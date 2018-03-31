@@ -14,9 +14,9 @@ from oauth2client.file import Storage
 SCOPES = 'https://www.googleapis.com/auth/gmail.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'gmail-desktop-notify'
-TIMESTAMP = open('prev_time', 'r+')
-ICON = '/home/athulp/Downloads/gmail.svg'
-EMAIL_ID = 'athul929@gmail.com'
+#TIMESTAMP = open('prev_time', 'r+')
+ICON = './gmail.svg'
+EMAIL_ID = 'your email id here'
 notify2.init('Emails')
 
 def get_credentials():
@@ -52,10 +52,10 @@ def GetMessage(service, user_id, msg_id):
 	print(TIMESTAMP.read())
 	print(type(message['internalDate']))
 	notify2.Notification('New message from '+message['payload']['headers'][1]['value'], message['snippet'], ICON ).show()
-	if TIMESTAMP.closed is False:
+	''' if TIMESTAMP.closed is False:
 		print('hi')
 		TIMESTAMP.write(message['internalDate'])
-		TIMESTAMP.close()
+		TIMESTAMP.close()'''
 	return message
 
 for message in ListMessagesMatchingQuery(service, EMAIL_ID, 1, 'is:unread category:primary'):
